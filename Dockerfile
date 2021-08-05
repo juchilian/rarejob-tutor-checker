@@ -1,12 +1,13 @@
 FROM python:alpine
 
-WORKDIR /app
-
-COPY ./app /app
+WORKDIR /usr/src/app
 
 # install dependencies
 RUN pip install --upgrade pip
-COPY ./requirements.txt .
-RUN pip install -r requirements.txt
+RUN python3 -m pip install pipenv
+COPY Pipfile .
+COPY Pipfile.lock .
+RUN pipenv install --system --deploy --ignore-pipfile
+RUN pipenv sync
 
-CMD ["python", "index.py"]
+COPY . .
