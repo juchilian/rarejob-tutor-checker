@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  server:
+    build: .
+    command: python index.py
+    volumes:
+      - ./app:/app
+    ports:
+      - 5000:80
