@@ -10,8 +10,11 @@ class TestSample(unittest.TestCase):
         # 終了処理
         pass
 
-    def test_sample(self):
+    def test_ok(self):
         self.assertEqual("1", "1")
+    
+    def test_wrong(self):
+        self.assertEqual("1", "2")
 
 
 if __name__ == "__main__":
