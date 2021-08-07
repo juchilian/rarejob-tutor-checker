@@ -9,5 +9,8 @@ up:
 	$(DOCKER) up
 
 py-test:
+	./scripts/py-test.sh	
+
+docker-py-test:
 	$(DOCKER) run --rm server ./scripts/py-test.sh '${PACKAGE}' '${ARGS}'
 

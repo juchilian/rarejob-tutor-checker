@@ -1,9 +1,9 @@
 import unittest
-
+from server.index import Sample
 
 class TestSample(unittest.TestCase):
     def setUp(self):
-        # 初期化処理
+        self.testSample = Sample(1,2)
         pass
 
     def tearDown(self):
@@ -11,10 +11,10 @@ class TestSample(unittest.TestCase):
         pass
 
     def test_ok(self):
-        self.assertEqual("1", "1")
+        self.assertEqual(self.testSample.addition(), 3)
     
     def test_wrong(self):
-        self.assertEqual("1", "2")
+        self.assertEqual(self.testSample.addition(), 4)
 
 
 if __name__ == "__main__":
