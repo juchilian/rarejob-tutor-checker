@@ -6,11 +6,11 @@ PACKAGE=${1:-...}
 ARGS=${2}
 
 # find all files have 
-testFiles=($(find .  -type f -name '*.py' -name 'test_*'))
+testFiles=($(find . -name '*.py' -name 'test_*' | sed -e "s/\.\///"))
 
 for file in ${testFiles[@]}
 do
-    echo $file
-    python $(echo $file)
-    echo
+    echo "TEST: $file"
+    python -B -m unittest -v $(echo $file)
+    echo 
 done
