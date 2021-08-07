@@ -20,7 +20,7 @@
 
 ### CI/CD
 
-- Circle CI
+- Travis CI
 
 ### コンテナ技術
 

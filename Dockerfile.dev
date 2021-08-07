@@ -2,6 +2,7 @@ FROM python:alpine
 
 WORKDIR /usr/src/app
 
+RUN apk add --no-cache bash
 # install dependencies
 RUN pip install --upgrade pip
 RUN python3 -m pip install pipenv
@@ -10,4 +11,4 @@ COPY Pipfile.lock .
 RUN pipenv install --system --deploy --ignore-pipfile
 RUN pipenv sync
 
-COPY . .
+COPY . /usr/src/app
