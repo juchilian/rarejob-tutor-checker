@@ -9,6 +9,8 @@ services:
     image: selenium/node-chrome-debug
     container_name: "chrome"
     shm_size: 2g
+    depends_on:
+      - selenium-hub
     links:
       - selenium-hub:hub
     ports:
@@ -21,6 +23,8 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     command: python3 server/index.py
+    depends_on:
+      - selenium
     volumes:
       - .:/usr/src/app/
     environment:
