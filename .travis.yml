@@ -7,6 +7,4 @@ before_install:
   - docker build -t juchilian/rarejob-tutor-checker -f Dockerfile.dev .
 
 script:
-  - python3 -B -m unittest -v tests/test_index.py
-  # - ./scripts/py-test.sh
-  # - docker run -e CI=true juchilian/rarejob-tutor-checker ./scripts/py-test.sh
+  - python3 -B -m unittest -v
