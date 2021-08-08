@@ -1,12 +1,28 @@
 version: "3"
-
 services:
+  selenium-hub:
+    image: selenium/hub
+    container_name: "selenium-hub"
+    ports:
+      - 4444:4444
+  selenium:
+    image: selenium/node-chrome-debug
+    container_name: "chrome"
+    shm_size: 2g
+    links:
+      - selenium-hub:hub
+    ports:
+      - 4444
+      - 5900:5900
+    volumes:
+      - /dev/shm:/dev/shm
   server:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    command: python server/index.py
+    command: python3 server/index.py
     volumes:
       - .:/usr/src/app/
-    ports:
-      - 5000:80
+    environment:
+      SELENIUM_URL: http://selenium-hub:4444/wd/hub
+    tty: true

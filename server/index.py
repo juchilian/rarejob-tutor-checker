@@ -5,5 +5,7 @@ class Sample():
     
     def addition(self):
         return self.a + self.b
+
+print('Executed: index.py')
     
 
