@@ -11,6 +11,6 @@ testFiles=($(find . -name '*.py' -name 'test_*' | sed -e "s/\.\///"))
 for file in ${testFiles[@]}
 do
     echo "TEST: $file"
-    python -B -m unittest -v $(echo $file)
+    python3 -B -m unittest -v $(echo $file)
     echo 
 done
