@@ -1,20 +1,18 @@
 import unittest
-from server.index import Sample
 
 class TestSample(unittest.TestCase):
     def setUp(self):
-        self.testSample = Sample(1,2)
         pass
 
     def tearDown(self):
-        # 終了処理
         pass
 
     def test_ok(self):
-        self.assertEqual(self.testSample.addition(), 3)
+        self.assertEqual(3, 3)
     
+    @unittest.skip("demonstrating skipping")
     def test_wrong(self):
-        self.assertEqual(self.testSample.addition(), 4)
+        self.assertEqual(3, 4)
 
 
 if __name__ == "__main__":
