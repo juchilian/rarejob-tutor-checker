@@ -11,10 +11,7 @@ services:
     shm_size: 2g
     depends_on:
       - selenium-hub
-    links:
-      - selenium-hub:hub
     ports:
-      - 4444
       - 5900:5900
     volumes:
       - /dev/shm:/dev/shm
@@ -29,4 +26,3 @@ services:
       - .:/usr/src/app/
     environment:
       SELENIUM_URL: http://selenium-hub:4444/wd/hub
-    tty: true
