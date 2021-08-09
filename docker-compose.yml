@@ -1,17 +1,13 @@
 version: "3"
 services:
-  selenium-hub:
-    image: selenium/hub
-    container_name: "selenium-hub"
-    ports:
-      - 4444:4444
   selenium:
-    image: selenium/node-chrome-debug
-    container_name: "chrome"
+    image: selenium/standalone-chrome:4.0.0-rc-1-prerelease-20210804
+    container_name: "selenium"
     shm_size: 2g
-    depends_on:
-      - selenium-hub
+    networks:
+      - scraping
     ports:
+      - 4444
       - 5900:5900
     volumes:
       - /dev/shm:/dev/shm
@@ -19,10 +15,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    command: python3 server/index.py
+    # command: python3 server/index.py
+    networks:
+      - scraping
     depends_on:
       - selenium
     volumes:
       - .:/usr/src/app/
     environment:
-      SELENIUM_URL: http://selenium-hub:4444/wd/hub
+      SELENIUM_URL: http://selenium:4444/wd/hub
+    tty: true
+
+networks:
+  scraping:
