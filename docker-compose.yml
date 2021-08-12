@@ -4,10 +4,8 @@ services:
     image: selenium/standalone-chrome:4.0.0-rc-1-prerelease-20210804
     container_name: "selenium"
     shm_size: 2g
-    networks:
-      - scraping
     ports:
-      - 4444
+      - 4444:4444
       - 5900:5900
     volumes:
       - /dev/shm:/dev/shm
@@ -15,9 +13,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    # command: python3 server/index.py
-    networks:
-      - scraping
+    # command: tail server/index.py
     depends_on:
       - selenium
     volumes:
@@ -25,6 +21,3 @@ services:
     environment:
       SELENIUM_URL: http://selenium:4444/wd/hub
     tty: true
-
-networks:
-  scraping:
