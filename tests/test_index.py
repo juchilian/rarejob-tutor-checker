@@ -1,4 +1,6 @@
 import unittest
+from datetime import datetime, timedelta
+from pytz import timezone
 
 class TestSample(unittest.TestCase):
     def setUp(self):
@@ -6,13 +8,13 @@ class TestSample(unittest.TestCase):
 
     def tearDown(self):
         pass
-
-    def test_ok(self):
-        self.assertEqual(3, 3)
     
-    @unittest.skip("demonstrating skipping")
-    def test_wrong(self):
-        self.assertEqual(3, 4)
+    def test_timezone(self):
+        tomorrow = datetime.now(timezone('Asia/Tokyo')) + timedelta(days=1)
+        tomorrow_str = tomorrow.strftime('%Y/%m/%d')
+        print(tomorrow_str)
+        
+
 
 
 if __name__ == "__main__":

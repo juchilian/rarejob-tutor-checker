@@ -1,23 +1,22 @@
 version: "3"
+
 services:
-  selenium:
-    image: selenium/standalone-chrome:4.0.0-rc-1-prerelease-20210804
-    container_name: "selenium"
+  chrome:
+    image: selenium/standalone-chrome:latest
+    container_name: chrome
     shm_size: 2g
-    ports:
-      - 4444:4444
-      - 5900:5900
-    volumes:
-      - /dev/shm:/dev/shm
   server:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    # command: tail server/index.py
     depends_on:
-      - selenium
+      - chrome
     volumes:
       - .:/usr/src/app/
     environment:
-      SELENIUM_URL: http://selenium:4444/wd/hub
+      SELENIUM_URL: http://chrome:4444/wd/hub
     tty: true
+
+networks:
+  web:
+    driver: bridge
