@@ -1,4 +1,5 @@
 import unittest
+from server import RarejobBooker
 from datetime import datetime, timedelta
 from pytz import timezone
 
